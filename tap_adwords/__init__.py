@@ -1048,10 +1048,10 @@ def do_discover_generic_endpoints():
 def do_discover(customer_ids):
     sdk_client = create_sdk_client(customer_ids[0])
     generic_streams = do_discover_generic_endpoints()
-    # report_streams = do_discover_reports(sdk_client)
+    report_streams = do_discover_reports(sdk_client)
     streams = []
     streams.extend(generic_streams)
-    # streams.extend(report_streams)
+    streams.extend(report_streams)
     json.dump({"streams": streams}, sys.stdout, indent=2)
 
 def create_sdk_client(customer_id):
