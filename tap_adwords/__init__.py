@@ -170,9 +170,9 @@ def state_key_name(customer_id, report_name):
     return report_name + "_" + customer_id
 
 def should_sync(mdata, field):
-    if mdata.get(('properties', field), {}).get('selected'):
+    if mdata.get(('properties', field), {}).get('inclusion') == 'automatic':
         return True
-    elif mdata.get(('properties', field), {}).get('inclusion') == 'automatic':
+    elif mdata.get(('properties', field), {}).get('inclusion') == 'selected':
         return True
 
     return False
@@ -725,14 +725,20 @@ def get_and_cache_parent_account_tz_str(sdk_client):
     SDK_CLIENT
     """
     if sdk_client.client_customer_id not in parent_account_tz_cache:
-        selector = {'fields': ['CustomerId', 'DateTimeZone'],
-                    'predicates': [
-                        {'field': 'CustomerId',
-                         'operator': 'IN',
-                         'values': [sdk_client.client_customer_id]}
-                    ],
-                    # Should only ever have one result
-                    'paging': {'startIndex': '0', 'numberResults': '1'}}
+        selector = {
+            'fields': ['CustomerId', 'DateTimeZone'],
+            'predicates': [
+                {
+                'field': 'CustomerId',
+                'operator': 'IN',
+                'values': [sdk_client.client_customer_id.replace('-', '')]
+                }
+            ],
+            'paging': {
+                'startIndex': '0',
+                'numberResults': '1'
+            }
+        }
         results = get_page(sdk_client, selector, 'accounts', 0)
         assert results['totalNumEntries'] <= 1
         if results['totalNumEntries'] == 1:
@@ -883,7 +889,7 @@ def do_sync(properties, sdk_client):
         stream_name = catalog.get('stream')
         stream_metadata = metadata.to_map(catalog.get('metadata'))
 
-        if stream_metadata.get((), {}).get('selected'):
+        if stream_metadata.get((), {}).get('inclusion'):
             LOGGER.info('Syncing stream %s ...', stream_name)
             sync_stream(stream_name, stream_metadata, sdk_client)
         else:
