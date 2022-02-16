@@ -20,7 +20,6 @@ from googleads.errors import GoogleAdsServerFault, AdWordsReportBadRequestError
 import requests
 import singer
 import zeep
-import pendulum
 from singer import metrics
 from singer import bookmarks
 from singer import utils
@@ -154,7 +153,6 @@ def get_start_for_stream(customer_id, stream_name):
     bk_value = bookmarks.get_bookmark(STATE,
                                       state_key_name(customer_id, stream_name),
                                       'date')
-      
     bk_start_date = utils.strptime_with_tz(bk_value or CONFIG['start_date'])
     return bk_start_date
 
@@ -998,7 +996,7 @@ def check_selected_fields(stream, field_list, sdk_client):
             if ex_field in field_set:
                 field_errors.append(field_map[ex_field])
 
-        if len(field_errors) != 0:
+        if field_errors:
             errors.append("{} cannot be selected with {}".format(
                 field.xmlAttributeName, ",".join(field_errors)))
 
