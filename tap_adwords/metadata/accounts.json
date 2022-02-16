@@ -1,8 +1,8 @@
 [{ "metadata": { "inclusion": "selected" }, "breadcrumb": [] },
     { "metadata": { "inclusion": "selected" }, "breadcrumb": ["properties", "name"] },
     { "metadata": { "inclusion": "selected" }, "breadcrumb": ["properties", "dateTimeZone"] },
-    { "metadata": { "inclusion": "selected" }, "breadcrumb": ["properties", "customerId"] },
-    { "metadata": { "inclusion": "available" }, "breadcrumb": ["properties", "canManageClients"] },
-    { "metadata": { "inclusion": "available" }, "breadcrumb": ["properties", "testAccount"] },
-    { "metadata": { "inclusion": "available" }, "breadcrumb": ["properties", "currencyCode"] }
+    { "metadata": { "inclusion": "automatic" }, "breadcrumb": ["properties", "customerId"] },
+    { "metadata": { "inclusion": "selected" }, "breadcrumb": ["properties", "canManageClients"] },
+    { "metadata": { "inclusion": "selected" }, "breadcrumb": ["properties", "testAccount"] },
+    { "metadata": { "inclusion": "selected" }, "breadcrumb": ["properties", "currencyCode"] }
 ]
