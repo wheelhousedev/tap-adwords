@@ -155,8 +155,8 @@ def get_start_for_stream(customer_id, stream_name):
                                       state_key_name(customer_id, stream_name),
                                       'date')
 
-    if bk_value is not None:
-        print(bk_value)
+    # if bk_value is not None:
+    #     print(bk_value)
                                       
     bk_start_date = utils.strptime_with_tz(bk_value or CONFIG['start_date'])
     return bk_start_date
