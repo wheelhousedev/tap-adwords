@@ -85,7 +85,7 @@ VERIFIED_REPORTS = frozenset([
     #'CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT',   -- does NOT allow for querying by date range
     #'CAMPAIGN_NEGATIVE_LOCATIONS_REPORT',              -- does NOT allow for querying by date range
     #'CAMPAIGN_NEGATIVE_PLACEMENTS_PERFORMANCE_REPORT', -- does NOT allow for querying by date range
-    'CAMPAIGN_PERFORMANCE_REPORT',
+    # 'CAMPAIGN_PERFORMANCE_REPORT',
     #'CAMPAIGN_SHARED_SET_REPORT',                      -- does NOT allow for querying by date range
     # 'CLICK_PERFORMANCE_REPORT',
     #'CREATIVE_CONVERSION_REPORT',
