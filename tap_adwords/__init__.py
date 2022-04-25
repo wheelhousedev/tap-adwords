@@ -402,11 +402,15 @@ CAMPAIGNS_BLACK_LISTED_FIELDS = set(['networkSetting', 'conversionOptimizerEligi
                                      'frequencyCap'])
 AD_GROUPS_BLACK_LISTED_FIELDS = set(['biddingStrategyConfiguration'])
 
+AD_PERFORMANCE_REPORT_SELECTED_FIELDS = set(['account', 'ad','adGroup'])
+
 def filter_fields_by_stream_name(stream_name, fields_to_sync):
     if stream_name == 'campaigns':
         return [f for f in fields_to_sync if f not in CAMPAIGNS_BLACK_LISTED_FIELDS]
     elif stream_name == 'ad_groups':
         return [f for f in fields_to_sync if f not in AD_GROUPS_BLACK_LISTED_FIELDS]
+    elif stream_name == 'AD_PERFORMANCE_REPORT':
+        return [f for f in fields_to_sync if f in AD_PERFORMANCE_REPORT_SELECTED_FIELDS]
     elif stream_name == 'ads':
         return fields_to_sync
     elif stream_name == 'accounts':
